@@ -4,6 +4,10 @@
 # pushes to `master` branch of this repo and on updates of
 # parent `alpine` image.
 #
+# Note! Docker Hub `post_push` hook must be always up-to-date with default
+# values of current Makefile. To update it just use:
+#	make post-push-hook
+#
 # It's still possible to build, tag and push images manually. Just use:
 #	make release
 
@@ -70,4 +74,26 @@ release: | image tags push
 
 
 
-.PHONY: image tags push release
+# Create `post_push` Docker Hub hook.
+#
+# When Docker Hub triggers automated build all the tags defined in `post_push`
+# hook will be assigned to built image. It allows to link the same image with
+# different tags, and not to build identical image for each tag separately.
+# See details:
+# http://windsock.io/automated-docker-image-builds-with-multiple-tags
+#
+# Usage:
+#	make post-push-hook [TAGS=t1,t2,...]
+
+post-push-hook:
+	mkdir -p $(PWD)/hooks
+	docker run --rm -i \
+		-v $(PWD)/post_push.j2:/data/post_push.j2:ro \
+		-e TEMPLATE=post_push.j2 \
+		pinterb/jinja2 \
+			image_tags='$(TAGS)' \
+		> $(PWD)/hooks/post_push
+
+
+
+.PHONY: image tags push release post-push-hook
