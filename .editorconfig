@@ -20,6 +20,6 @@ indent_size = 4
 indent_style = tab
 indent_size = 4
 
-[{post_push,post_push.j2}]
+[{*.bats,post_push,post_push.j2}]
 indent_style = space
 indent_size = 2
