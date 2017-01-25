@@ -70,7 +70,7 @@ Latest version of Nmap.
 
 ### `X`
 
-Latest version of Nmap major vesrion `X` branch.
+Latest version of Nmap major version `X` branch.
 
 
 ### `X.Y`
