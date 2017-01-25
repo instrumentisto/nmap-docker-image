@@ -1,0 +1,17 @@
+language: bash
+
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - make image no-cache=yes VERSION=testing
+
+script:
+  - make test VERSION=testing
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
