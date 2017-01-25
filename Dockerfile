@@ -6,7 +6,7 @@ MAINTAINER Instrumentisto Team <developer@instrumentisto.com>
 
 # Install dependencies
 RUN apk add --update --no-cache \
-            curl ca-certificates \
+            ca-certificates \
             libpcap \
             libgcc libstdc++ \
             libressl2.4-libcrypto libressl2.4-libssl \
@@ -18,12 +18,21 @@ RUN apk add --update --no-cache \
 RUN apk add --update --no-cache --virtual .build-deps \
         libpcap-dev libressl-dev lua-dev linux-headers \
         autoconf g++ libtool make \
+        curl \
 
  && curl -L -o /tmp/nmap.tar.bz2 \
-         https://nmap.org/dist/nmap-7.40.tar.bz2 \
+         https://nmap.org/dist/nmap-7.12.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap* \
  && ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --mandir=/usr/share/man \
+        --infodir=/usr/share/info \
+        --without-zenmap \
+        --without-nmap-update \
+        --with-openssl=/usr/lib \
+        --with-liblua=/usr/include \
  && make \
  && make install \
 
@@ -32,4 +41,4 @@ RUN apk add --update --no-cache --virtual .build-deps \
            /tmp/nmap*
 
 
-ENTRYPOINT ["/usr/local/bin/nmap"]
+ENTRYPOINT ["/usr/bin/nmap"]
