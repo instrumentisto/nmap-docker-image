@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:latest
+FROM alpine:3.6
 
 MAINTAINER Instrumentisto Team <developer@instrumentisto.com>
 
@@ -9,7 +9,7 @@ RUN apk add --update --no-cache \
             ca-certificates \
             libpcap \
             libgcc libstdc++ \
-            libressl2.4-libcrypto libressl2.4-libssl \
+            libressl2.5-libcrypto libressl2.5-libssl \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
