@@ -1,15 +1,16 @@
 language: bash
 
-sudo: required
+sudo: false
 
 services:
   - docker
 
 before_script:
-  - make image no-cache=yes VERSION=testing
+  - make image no-cache=yes VERSION=test
+  - make deps.bats
 
 script:
-  - make test VERSION=testing
+  - make test VERSION=test
 
 notifications:
   email:
