@@ -13,8 +13,8 @@
 
 
 IMAGE_NAME := instrumentisto/nmap
-VERSION ?= 7.40
-TAGS ?= 7.40,7,latest
+VERSION ?= 7.50
+TAGS ?= 7.50,7,latest
 
 no-cache ?= no
 
@@ -116,7 +116,7 @@ BATS_VER ?= 0.4.0
 deps.bats:
 ifeq ($(wildcard $(PWD)/test/bats),)
 	mkdir -p $(PWD)/test/bats/vendor
-	curl -L -o $(PWD)/test/bats/vendor/bats.tar.gz \
+	curl -fL -o $(PWD)/test/bats/vendor/bats.tar.gz \
 		https://github.com/sstephenson/bats/archive/v$(BATS_VER).tar.gz
 	tar -xzf $(PWD)/test/bats/vendor/bats.tar.gz \
 		-C $(PWD)/test/bats/vendor
