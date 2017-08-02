@@ -13,8 +13,8 @@
 
 
 IMAGE_NAME := instrumentisto/nmap
-VERSION ?= 7.50
-TAGS ?= 7.50,7,latest
+VERSION ?= 7.60
+TAGS ?= 7.60,7,latest
 
 no-cache ?= no
 

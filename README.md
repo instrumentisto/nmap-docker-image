@@ -1,10 +1,7 @@
 Nmap Docker Image
 =================
 
-[![GitHub release](https://img.shields.io/github/release/instrumentisto/nmap-docker-image.svg)](https://hub.docker.com/r/instrumentisto/nmap/tags)
-[![Build Status](https://travis-ci.org/instrumentisto/nmap-docker-image.svg?branch=master)](https://travis-ci.org/instrumentisto/nmap-docker-image)
-[![Docker Pulls](https://img.shields.io/docker/pulls/instrumentisto/nmap.svg)](https://hub.docker.com/r/instrumentisto/nmap)
-[![Based on](https://img.shields.io/badge/based%20on-alpine-blue.svg)][12]
+[![GitHub release](https://img.shields.io/github/release/instrumentisto/nmap-docker-image.svg)](https://hub.docker.com/r/instrumentisto/nmap/tags) [![Build Status](https://travis-ci.org/instrumentisto/nmap-docker-image.svg?branch=master)](https://travis-ci.org/instrumentisto/nmap-docker-image) [![Docker Pulls](https://img.shields.io/docker/pulls/instrumentisto/nmap.svg)](https://hub.docker.com/r/instrumentisto/nmap) [![Based on](https://img.shields.io/badge/based%20on-alpine-blue.svg)][12]
 
 
 
