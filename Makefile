@@ -13,8 +13,8 @@
 
 
 IMAGE_NAME := instrumentisto/nmap
-VERSION ?= 7.60
-TAGS ?= 7.60,7,latest
+VERSION ?= 7.70
+TAGS ?= 7.70,7,latest
 
 
 comma := ,
