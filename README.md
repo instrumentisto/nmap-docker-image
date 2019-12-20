@@ -60,9 +60,13 @@ Concrete `X.Y` version of Nmap.
 
 ## License
 
-Nmap itself is licensed under [GPLv2 license][91].
+Nmap is licensed under [GPLv2 license][92].
 
-Nmap Docker image is licensed under [MIT license][90].
+As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
+
+The [sources][90] for producing `instrumentisto/nmap` Docker images are licensed under [Blue Oak Model License 1.0.0][91].
 
 
 
@@ -84,5 +88,6 @@ If you have any problems with or questions about this image, please contact us t
 [10]: https://github.com/instrumentisto/nmap-docker-image/issues
 [11]: http://alpinelinux.org
 [12]: https://hub.docker.com/_/alpine
-[90]: https://github.com/instrumentisto/nmap-docker-image/blob/master/LICENSE.md
-[91]: https://nmap.org/data/COPYING
+[90]: https://github.com/instrumentisto/nmap-docker-image
+[91]: https://github.com/instrumentisto/nmap-docker-image/blob/master/LICENSE.md
+[92]: https://nmap.org/data/COPYING
