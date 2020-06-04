@@ -1,7 +1,5 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.11
-
-MAINTAINER Instrumentisto Team <developer@instrumentisto.com>
+FROM alpine:3.12
 
 
 # Install dependencies
@@ -9,7 +7,7 @@ RUN apk add --update --no-cache \
             ca-certificates \
             libpcap \
             libgcc libstdc++ \
-            libressl3.0-libcrypto libressl3.0-libssl \
+            libressl3.1-libcrypto libressl3.1-libssl \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
