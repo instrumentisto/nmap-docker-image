@@ -19,7 +19,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
         curl \
 
  && curl -fL -o /tmp/nmap.tar.bz2 \
-         https://nmap.org/dist/nmap-7.90.tar.bz2 \
+         https://nmap.org/dist/nmap-7.91.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap* \
  && ./configure \
