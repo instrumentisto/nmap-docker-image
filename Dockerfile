@@ -1,6 +1,12 @@
 # https://hub.docker.com/_/alpine
 FROM alpine:3.12
 
+ARG nmap_ver=7.91
+ARG build_rev=0
+
+LABEL org.opencontainers.image.source="\
+    https://github.com/instrumentisto/nmap-docker-image"
+
 
 # Install dependencies
 RUN apk add --update --no-cache \
@@ -19,7 +25,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
         curl \
 
  && curl -fL -o /tmp/nmap.tar.bz2 \
-         https://nmap.org/dist/nmap-7.91.tar.bz2 \
+         https://nmap.org/dist/nmap-${nmap_ver}.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap* \
  && ./configure \

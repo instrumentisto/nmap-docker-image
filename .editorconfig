@@ -21,7 +21,7 @@ indent_size = 4
 indent_style = tab
 indent_size = 4
 
-[{*.sh,*.bats,post_push,post_push.tmpl.php}]
+[*.bats]
 indent_style = space
 indent_size = 2
 
