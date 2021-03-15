@@ -82,7 +82,7 @@ jobs:
           provider: dockerhub
           destination_container_repo: instrumentisto/nmap
           readme_file: README.md
-        if: ${{ env.PUBLISH == 'true' }}
+        if: ${{ env.PUBLISH == 'true' }}K
 
       - name: Parse release version from Git tag
         id: release
