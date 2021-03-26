@@ -7,7 +7,7 @@ All user visible changes to this project will be documented in this file. This p
 
 
 ## [7.91-r2] · 2021-03-26
-[7.91-r1]: /../../tree/7.91-r2
+[7.91-r2]: /../../tree/7.91-r2
 
 [Diff](/../../compare/7.91-r1...7.91-r2)
 
