@@ -6,13 +6,14 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
-## [7.91-r6] · 2021-08-09
-[7.91-r6]: /../../tree/7.91-r6
+## [7.92-r0] · 2021-08-09
+[7.92-r0]: /../../tree/7.92-r0
 
-[Diff](/../../compare/7.91-r5...7.91-r6)
+[Diff](/../../compare/7.91-r5...7.92-r0)
 
 ### Upgraded
 
+- [Nmap] 7.92: <https://nmap.org/changelog.html#7.92>
 - [Alpine Linux] 3.14.1: <https://github.com/docker-library/official-images/commit/a52e64df36ca65954c6c7f57ad242634e834c73a>
 
 
