@@ -29,6 +29,13 @@ TAGS ?= $(NMAP_VER)-r$(BUILD_REV) \
         $(strip $(shell echo $(NMAP_VER) | cut -d '.' -f1)) \
         latest
 VERSION ?= $(word 1,$(subst $(comma), ,$(TAGS)))
+PLATFORMS ?= linux/amd64 \
+             linux/arm64 \
+             linux/arm/v6 \
+             linux/arm/v7 \
+             linux/ppc64le \
+             linux/s390x
+MAIN_PLATFORM ?= $(word 1,$(subst $(comma), ,$(PLATFORMS)))
 
 
 
@@ -43,8 +50,6 @@ push: docker.push
 
 release: git.release
 
-tags: docker.tags
-
 test: test.docker
 
 
@@ -58,59 +63,86 @@ docker-namespaces = $(strip $(if $(call eq,$(namespaces),),\
                             $(NAMESPACES),$(subst $(comma), ,$(namespaces))))
 docker-tags = $(strip $(if $(call eq,$(tags),),\
                       $(TAGS),$(subst $(comma), ,$(tags))))
+docker-platforms = $(strip $(if $(call eq,$(platforms),),\
+                           $(PLATFORMS),$(subst $(comma), ,$(platforms))))
 
-
-# Build Docker image with the given tag.
-#
-# Usage:
-#	make docker.image [tag=($(VERSION)|<docker-tag>)]] [no-cache=(no|yes)]
-#	                  [NMAP_VER=<nmap-version>]
-#	                  [BUILD_REV=<build-revision>]
-
-docker.image:
-	docker build --network=host --force-rm \
+# Runs `docker buildx build` command allowing to customize it for the purpose of
+# re-tagging or pushing.
+define docker.buildx
+	$(eval namespace := $(strip $(1)))
+	$(eval tag := $(strip $(2)))
+	$(eval platform := $(strip $(3)))
+	$(eval no-cache := $(strip $(4)))
+	$(eval args := $(strip $(5)))
+	docker buildx build --force-rm $(args) \
+		--platform $(platform) \
 		$(if $(call eq,$(no-cache),yes),--no-cache --pull,) \
 		--build-arg nmap_ver=$(NMAP_VER) \
 		--build-arg build_rev=$(BUILD_REV) \
-		-t instrumentisto/$(NAME):$(if $(call eq,$(tag),),$(VERSION),$(tag)) ./
+		-t $(namespace)/$(NAME):$(tag) .
+endef
 
 
-# Manually push Docker images to container registries.
+# Pre-build cache for Docker image builds.
+#
+# WARNING: This command doesn't apply tag to the built Docker image, just
+#          creates a build cache. To produce a Docker image with a tag, use
+#          `docker.image` command right after running this one.
 #
 # Usage:
-#	make docker.push [tags=($(TAGS)|<docker-tag-1>[,<docker-tag-2>...])]
-#	                 [namespaces=($(NAMESPACES)|<prefix-1>[,<prefix-2>...])]
+#	make docker.build.cache
+#		[platforms=($(PLATFORMS)|<platform-1>[,<platform-2>...])]
+#		[no-cache=(no|yes)]
+#		[NMAP_VER=<nmap-version>]
+#		[BUILD_REV=<build-revision>]
+
+docker.build.cache:
+	$(call docker.buildx,\
+		instrumentisto,\
+		build-cache,\
+		$(shell echo "$(docker-platforms)" | tr -s '[:blank:]' ','),\
+		$(no-cache),\
+		--output 'type=image$(comma)push=false')
+
+
+# Build Docker image on the given platform with the given tag.
+#
+# Usage:
+#	make docker.image
+#		[tag=($(VERSION)|<tag>)]
+#		[platform=($(MAIN_PLATFORM)|<platform>)]
+#		[no-cache=(no|yes)]
+#		[NMAP_VER=<nmap-version>]
+#		[BUILD_REV=<build-revision>]
+
+docker.image:
+	$(call docker.buildx,\
+		instrumentisto,\
+		$(or $(tag),$(VERSION)),\
+		$(or $(platform),$(MAIN_PLATFORM)),\
+		$(no-cache),\
+		--load)
+
+
+# Push Docker images to their repositories (container registries),
+# along with the required multi-arch manifests.
+#
+# Usage:
+#	make docker.push
+#		[namespaces=($(NAMESPACES)|<prefix-1>[,<prefix-2>...])]
+#		[tags=($(TAGS)|<tag-1>[,<tag-2>...])]
+#		[platforms=($(PLATFORMS)|<platform-1>[,<platform-2>...])]
+#		[NMAP_VER=<nmap-version>]
+#		[BUILD_REV=<build-revision>]
 
 docker.push:
-	$(foreach tag,$(subst $(comma), ,$(docker-tags)),\
-		$(foreach namespace,$(subst $(comma), ,$(docker-namespaces)),\
-			$(call docker.push.do,$(namespace),$(tag))))
-define docker.push.do
-	$(eval repo := $(strip $(1)))
-	$(eval tag := $(strip $(2)))
-	docker push $(repo)/$(NAME):$(tag)
-endef
-
-
-# Tag Docker image with the given tags.
-#
-# Usage:
-#	make docker.tags [of=($(VERSION)|<docker-tag>)]
-#	                 [tags=($(TAGS)|<docker-tag-1>[,<docker-tag-2>...])]
-#	                 [namespaces=($(NAMESPACES)|<prefix-1>[,<prefix-2>...])]
-
-docker-tags-of = $(if $(call eq,$(of),),$(VERSION),$(of))
-
-docker.tags:
-	$(foreach tag,$(subst $(comma), ,$(docker-tags)),\
-		$(foreach namespace,$(subst $(comma), ,$(docker-namespaces)),\
-			$(call docker.tags.do,$(docker-tags-of),$(namespace),$(tag))))
-define docker.tags.do
-	$(eval from := $(strip $(1)))
-	$(eval repo := $(strip $(2)))
-	$(eval to := $(strip $(3)))
-	docker tag instrumentisto/$(NAME):$(from) $(repo)/$(NAME):$(to)
-endef
+	$(foreach namespace,$(docker-namespaces),\
+		$(foreach tag,$(docker-tags),\
+			$(call docker.buildx,\
+				$(namespace),\
+				$(tag),\
+				$(shell echo "$(docker-platforms)" | tr -s '[:blank:]' ','),,\
+				--push)))
 
 
 docker.test: test.docker
@@ -138,6 +170,40 @@ endif
 	node_modules/.bin/bats \
 		--timing $(if $(call eq,$(CI),),--pretty,--formatter tap) \
 		tests/main.bats
+# Run Bats tests for Docker image.
+#
+# Documentation of Bats:
+#	https://github.com/bats-core/bats-core
+#
+# Usage:
+#	make test.docker
+#		[tag=($(VERSION)|<tag>)]
+#		[platforms=($(MAIN_PLATFORM)|@all|<platform-1>[,<platform-2>...])]
+#		[( [build=no]
+#		 | build=yes [NMAP_VER=<nmap-version>]
+#		             [BUILD_REV=<build-revision>] )]
+
+test-docker-platforms = $(strip $(if $(call eq,$(platforms),),$(MAIN_PLATFORM),\
+                                $(if $(call eq,$(platforms),@all),$(PLATFORMS),\
+                                $(docker-platforms))))
+test.docker:
+ifeq ($(wildcard node_modules/.bin/bats),)
+	@make npm.install
+endif
+	$(foreach platform,$(test-docker-platforms),\
+		$(call test.docker.do,$(or $(tag),$(VERSION)),$(platform)))
+define test.docker.do
+	$(eval tag := $(strip $(1)))
+	$(eval platform := $(strip $(2)))
+	$(if $(call eq,$(build),yes),\
+		@make docker.image no-cache=no tag=$(tag) platform=$(platform) \
+			NMAP_VER=$(NMAP_VER) \
+			BUILD_REV=$(BUILD_REV) ,)
+	IMAGE=instrumentisto/$(NAME):$(tag) PLATFORM=$(platform) \
+	node_modules/.bin/bats \
+		--timing $(if $(call eq,$(CI),),--pretty,--formatter tap) \
+		tests/main.bats
+endef
 
 
 
@@ -172,7 +238,7 @@ endif
 # Usage:
 #	make git.release [ver=($(VERSION)|<proj-ver>)]
 
-git-release-tag = $(strip $(if $(call eq,$(ver),),$(VERSION),$(ver)))
+git-release-tag = $(strip $(or $(ver),$(VERSION)))
 
 git.release:
 ifeq ($(shell git rev-parse $(git-release-tag) >/dev/null 2>&1 && echo "ok"),ok)
@@ -188,8 +254,8 @@ endif
 # .PHONY section #
 ##################
 
-.PHONY: image push release tags test \
-        docker.image docker.push docker.tags docker.test \
+.PHONY: image push release test \
+        docker.build.cache docker.image docker.push docker.test \
         git.release \
         npm.install \
         test.docker

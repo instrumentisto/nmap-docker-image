@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.92-r2] · 2021-10-26
+[7.92-r2]: /../../tree/7.92-r2
+
+[Diff](/../../compare/7.92-r1...7.92-r2)
+
+### Added
+
+- Support for `linux/arm64`, `linux/arm/v6`, `linux/arm/v7`, `linux/ppc64le` and `linux/s390x` platforms.
+
+
+
+
 ## [7.92-r1] · 2021-08-28
 [7.92-r1]: /../../tree/7.92-r1
 

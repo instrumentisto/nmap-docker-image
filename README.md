@@ -16,7 +16,19 @@ Nmap Docker image
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`7.92-r1`, `7.92`, `7`, `latest`][201]
+- [`7.92-r2`, `7.92`, `7`, `latest`][201]
+
+
+
+
+## Supported platforms
+
+- `linux/amd64`
+- `linux/arm64`
+- `linux/arm/v6`
+- `linux/arm/v7`
+- `linux/ppc64le`
+- `linux/s390x`
 
 
 

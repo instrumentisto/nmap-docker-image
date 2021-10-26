@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.14.2
+FROM alpine:3.14
 
 ARG nmap_ver=7.92
-ARG build_rev=1
+ARG build_rev=2
 
 LABEL org.opencontainers.image.source="\
     https://github.com/instrumentisto/nmap-docker-image"
