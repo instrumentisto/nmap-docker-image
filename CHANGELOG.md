@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.92-r4] · 2021-11-25
+[7.92-r4]: /../../tree/7.92-r4
+
+[Diff](/../../compare/7.92-r3...7.92-r4)
+
+### Upgraded
+
+- [Alpine Linux] 3.15: <https://www.alpinelinux.org/posts/Alpine-3.15.0-released.html>
+
+
+
+
 ## [7.92-r3] · 2021-11-15
 [7.92-r3]: /../../tree/7.92-r3
 
@@ -50,6 +62,9 @@ All user visible changes to this project will be documented in this file. This p
 ### Upgraded
 
 - [Nmap] 7.92: <https://nmap.org/changelog.html#7.92>
+
+### Security updated
+
 - [Alpine Linux] 3.14.1: <https://github.com/docker-library/official-images/commit/a52e64df36ca65954c6c7f57ad242634e834c73a>
 
 
