@@ -160,22 +160,6 @@ docker.test: test.docker
 #	https://github.com/bats-core/bats-core
 #
 # Usage:
-#	make test.docker [tag=($(VERSION)|<tag>)]
-
-test.docker:
-ifeq ($(wildcard node_modules/.bin/bats),)
-	@make npm.install
-endif
-	IMAGE=instrumentisto/$(NAME):$(if $(call eq,$(tag),),$(VERSION),$(tag)) \
-	node_modules/.bin/bats \
-		--timing $(if $(call eq,$(CI),),--pretty,--formatter tap) \
-		tests/main.bats
-# Run Bats tests for Docker image.
-#
-# Documentation of Bats:
-#	https://github.com/bats-core/bats-core
-#
-# Usage:
 #	make test.docker
 #		[tag=($(VERSION)|<tag>)]
 #		[platforms=($(MAIN_PLATFORM)|@all|<platform-1>[,<platform-2>...])]
