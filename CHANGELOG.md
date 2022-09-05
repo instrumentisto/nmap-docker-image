@@ -6,6 +6,22 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.93-r0] · 2022-09-05
+[7.93-r0]: /../../tree/7.93-r0
+
+[Diff](/../../compare/7.92-r11...7.93-r0)
+
+### Upgraded
+
+- [Nmap] 7.93: <https://nmap.org/changelog.html#7.93>
+
+### Changed
+
+- Switched from [LibreTLS] to [OpenSSL].
+
+
+
+
 ## [7.92-r11] · 2022-08-10
 [7.92-r11]: /../../tree/7.92-r11
 
@@ -235,5 +251,7 @@ See [GitHub releases](/../../releases).
 
 
 [Alpine Linux]: https://www.alpinelinux.org
+[LibreTLS]: https://git.causal.agency/libretls/about
 [Nmap]: https://nmap.org
+[OpenSSL]: https://www.openssl.org
 [Semantic Versioning 2.0.0]: https://semver.org

@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.16.2
+FROM alpine:3.16
 
-ARG nmap_ver=7.92
-ARG build_rev=11
+ARG nmap_ver=7.93
+ARG build_rev=0
 
 LABEL org.opencontainers.image.source="\
     https://github.com/instrumentisto/nmap-docker-image"
@@ -13,14 +13,14 @@ RUN apk add --update --no-cache \
             ca-certificates \
             libpcap \
             libgcc libstdc++ \
-            libretls \
+            libssl3 \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
 
 # Compile and install Nmap from sources
 RUN apk add --update --no-cache --virtual .build-deps \
-        libpcap-dev libretls-dev lua-dev linux-headers \
+        libpcap-dev lua-dev linux-headers openssl3-dev \
         autoconf g++ libtool make \
         curl \
     \
