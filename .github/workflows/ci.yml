@@ -29,6 +29,7 @@ jobs:
           - arm32v6
           - arm32v7
           - arm64v8
+          - i386
           - ppc64le
           - s390x
     runs-on: ubuntu-latest
@@ -69,6 +70,7 @@ jobs:
           - arm32v6
           - arm32v7
           - arm64v8
+          - i386
           - ppc64le
           - s390x
     runs-on: ubuntu-latest
@@ -157,6 +159,7 @@ jobs:
                           linux-arm32v6 \
                           linux-arm32v7 \
                           linux-arm64v8 \
+                          linux-i386 \
                           linux-ppc64le \
                           linux-s390x
           do
@@ -178,6 +181,7 @@ jobs:
                       ${{ steps.version.outputs.group1 }}-linux-arm32v6
                       ${{ steps.version.outputs.group1 }}-linux-arm32v7
                       ${{ steps.version.outputs.group1 }}-linux-arm64v8
+                      ${{ steps.version.outputs.group1 }}-linux-i386
                       ${{ steps.version.outputs.group1 }}-linux-ppc64le
                       ${{ steps.version.outputs.group1 }}-linux-s390x'
         if: ${{ steps.skip.outputs.no == 'true' }}

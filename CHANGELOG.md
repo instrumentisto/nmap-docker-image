@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.93-r1] · 2022-10-28
+[7.93-r1]: /../../tree/7.93-r1
+
+[Diff](/../../compare/7.93-r0...7.93-r1)
+
+### Added
+
+- Support of `linux/386` platform.
+
+
+
+
 ## [7.93-r0] · 2022-09-05
 [7.93-r0]: /../../tree/7.93-r0
 
