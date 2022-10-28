@@ -23,12 +23,7 @@ Nmap Docker image
 
 ## Supported platforms
 
-- `linux/amd64`
-- `linux/arm64`
-- `linux/arm/v6`
-- `linux/arm/v7`
-- `linux/ppc64le`
-- `linux/s390x`
+- `linux`: `amd64`, `arm32v6`, `arm32v7`, `arm64v8`, `ppc64le`, `s390x`
 
 
 
@@ -65,26 +60,41 @@ docker run --rm -it --entrypoint nping instrumentisto/nmap scannme.nmap.org
 
 ## Image versions
 
-This image is based on the popular [Alpine Linux project][1], available in [the alpine official image][2]. Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
+This image is based on the popular [Alpine Linux project][1], available in [the alpine official image][2]. [Alpine Linux][1] is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
 
-This variant is highly recommended when final image size being as small as possible is desired. The main caveat to note is that it does use [musl libc][4] instead of [glibc and friends][5], so certain software might run into issues depending on the depth of their libc requirements. However, most software doesn't have an issue with this, so this variant is usually a very safe choice. See [this Hacker News comment thread][6] for more discussion of the issues that might arise and some pro/con comparisons of using Alpine-based images.
-
-
-### `X`
-
-Latest tag of `X` Nmap's major version.
+This variant is highly recommended when final image size being as small as possible is desired. The main caveat to note is that it does use [musl libc][4] instead of [glibc and friends][5], so certain software might run into issues depending on the depth of their libc requirements. However, most software doesn't have an issue with this, so this variant is usually a very safe choice. See [this Hacker News comment thread][6] for more discussion of the issues that might arise and some pro/con comparisons of using [Alpine][1]-based images.
 
 
-### `X.Y`
+### `<X>`
 
-Latest tag of a concrete `X.Y` version of Nmap.
+Latest tag of the latest major `X` Nmap version.
+
+This is a multi-platform image.
 
 
-### `X.Y-rN`
+### `<X.Y>`
 
-Concrete `N` image revision tag of a Nmap's concrete `X.Y` version.
+Latest tag of the concrete `X.Y` Nmap version.
+
+This is a multi-platform image.
+
+
+### `<X.Y>-r<N>`
+
+Concrete `N` image revision tag of the concrete `X.Y` Nmap version.
 
 Once build, it's never updated.
+
+This is a multi-platform image.
+
+
+### `<X.Y>-r<N>-<os>-<arch>`
+
+Concrete `N` image revision tag of the concrete `X.Y` Nmap version on the concrete `os` and `arch`.
+
+Once build, it's never updated.
+
+This is a single-platform image.
 
 
 
@@ -107,7 +117,6 @@ The [sources][90] for producing `instrumentisto/nmap` Docker images are licensed
 We can't notice comments in the [DockerHub] (or other container registries) so don't use them for reporting issue or asking question.
 
 If you have any problems with or questions about this image, please contact us through a [GitHub issue][80].
-
 
 
 

@@ -4,9 +4,6 @@ FROM alpine:3.16
 ARG nmap_ver=7.93
 ARG build_rev=0
 
-LABEL org.opencontainers.image.source="\
-    https://github.com/instrumentisto/nmap-docker-image"
-
 
 # Install dependencies
 RUN apk add --update --no-cache \
