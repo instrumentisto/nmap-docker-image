@@ -2,14 +2,14 @@ Nmap Docker image
 =================
 
 [![Release](https://img.shields.io/github/v/release/instrumentisto/nmap-docker-image "Release")](https://github.com/instrumentisto/nmap-docker-image/releases)
-[![CI](https://github.com/instrumentisto/nmap-docker-image/workflows/CI/badge.svg?branch=master "CI")](https://github.com/instrumentisto/nmap-docker-image/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/instrumentisto/nmap-docker-image/workflows/CI/badge.svg?branch=main "CI")](https://github.com/instrumentisto/nmap-docker-image/actions?query=workflow%3ACI+branch%3Amain)
 [![Docker Hub](https://img.shields.io/docker/pulls/instrumentisto/nmap?label=Docker%20Hub%20pulls "Docker Hub pulls")](https://hub.docker.com/r/instrumentisto/nmap)
 
 [Docker Hub](https://hub.docker.com/r/instrumentisto/nmap)
 | [GitHub Container Registry](https://github.com/orgs/instrumentisto/packages/container/package/nmap)
 | [Quay.io](https://quay.io/repository/instrumentisto/nmap)
 
-[Changelog](https://github.com/instrumentisto/nmap-docker-image/blob/master/CHANGELOG.md)
+[Changelog](https://github.com/instrumentisto/nmap-docker-image/blob/main/CHANGELOG.md)
 
 
 
@@ -127,7 +127,7 @@ If you have any problems with or questions about this image, please contact us t
 
 [80]: https://github.com/instrumentisto/nmap-docker-image/issues
 [90]: https://github.com/instrumentisto/nmap-docker-image
-[91]: https://github.com/instrumentisto/nmap-docker-image/blob/master/LICENSE.md
+[91]: https://github.com/instrumentisto/nmap-docker-image/blob/main/LICENSE.md
 [92]: https://nmap.org/data/COPYING
 
-[201]: https://github.com/instrumentisto/nmap-docker-image/blob/master/Dockerfile
+[201]: https://github.com/instrumentisto/nmap-docker-image/blob/main/Dockerfile
