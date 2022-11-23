@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.16
+FROM alpine:3.17
 
 ARG nmap_ver=7.93
-ARG build_rev=1
+ARG build_rev=2
 
 
 # Install dependencies
@@ -17,7 +17,7 @@ RUN apk add --update --no-cache \
 
 # Compile and install Nmap from sources
 RUN apk add --update --no-cache --virtual .build-deps \
-        libpcap-dev lua-dev linux-headers openssl3-dev \
+        libpcap-dev lua-dev linux-headers openssl-dev \
         autoconf g++ libtool make \
         curl \
     \
