@@ -16,7 +16,7 @@ Nmap Docker image
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`7.93-r3`, `7.93`, `7`, `latest`][201]
+- [`7.93-r4`, `7.93`, `7`, `latest`][201]
 
 
 
@@ -58,7 +58,7 @@ docker run --rm -it --entrypoint nping instrumentisto/nmap scannme.nmap.org
 
 
 
-## Image versions
+## Image tags
 
 This image is based on the popular [Alpine Linux project][1], available in [the alpine official image][2]. [Alpine Linux][1] is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.
 
@@ -83,7 +83,7 @@ This is a multi-platform image.
 
 Concrete `N` image revision tag of the concrete `X.Y` Nmap version.
 
-Once build, it's never updated.
+Once built, it's never updated.
 
 This is a multi-platform image.
 
@@ -92,7 +92,7 @@ This is a multi-platform image.
 
 Concrete `N` image revision tag of the concrete `X.Y` Nmap version on the concrete `os` and `arch`.
 
-Once build, it's never updated.
+Once built, it's never updated.
 
 This is a single-platform image.
 
