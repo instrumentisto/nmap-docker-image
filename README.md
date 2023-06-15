@@ -16,7 +16,7 @@ Nmap Docker image
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`7.93-r6`, `7.93`, `7`, `latest`][201]
+- [`7.93-r7`, `7.93`, `7`, `latest`][201]
 
 
 
