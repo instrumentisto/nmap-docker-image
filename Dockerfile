@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 ARG nmap_ver=7.94
-ARG build_rev=0
+ARG build_rev=1
 
 
 # Install dependencies
