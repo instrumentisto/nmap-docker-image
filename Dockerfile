@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.18
+FROM alpine:3.19
 
 ARG nmap_ver=7.94
-ARG build_rev=2
+ARG build_rev=3
 
 
 # Install dependencies

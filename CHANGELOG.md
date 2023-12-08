@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.94-r3] · 2023-12-08
+[7.94-r3]: /../../tree/7.94-r3
+
+[Diff](/../../compare/7.94-r2...7.94-r3)
+
+### Upgraded
+
+- [Alpine Linux] 3.19: <https://www.alpinelinux.org/posts/Alpine-3.19.0-released.html>
+
+
+
+
 ## [7.94-r2] · 2023-12-01
 [7.94-r2]: /../../tree/7.94-r2
 
