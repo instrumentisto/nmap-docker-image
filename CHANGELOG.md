@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.95-r0] · 2024-05-06
+[7.95-r0]: /../../tree/7.95-r0
+
+[Diff](/../../compare/7.94-r4...7.95-r0)
+
+### Upgraded
+
+- [Nmap] 7.95: <https://nmap.org/changelog.html#7.95>
+
+
+
+
 ## [7.94-r4] · 2024-01-29
 [7.94-r4]: /../../tree/7.94-r4
 
