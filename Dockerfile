@@ -1,23 +1,32 @@
 # https://hub.docker.com/_/alpine
-FROM alpine:3.20
+FROM alpine:3.21
 
 ARG nmap_ver=7.95
-ARG build_rev=4
+ARG build_rev=5
 
 
 # Install dependencies
 RUN apk add --update --no-cache \
             ca-certificates \
-            libpcap \
             libgcc libstdc++ \
-            libssl3 \
+            libcrypto3 libssl3 \
+            libpcap \
+            libssh2 \
+            lua5.4-libs \
+            zlib \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
 
 # Compile and install Nmap from sources
 RUN apk add --update --no-cache --virtual .build-deps \
-        libpcap-dev lua-dev linux-headers openssl-dev \
+        linux-headers \
+        openssl-dev \
+        libpcap-dev \
+        libssh2-dev \
+        lua5.4-dev \
+        pcre-dev \
+        zlib-dev \
         autoconf automake g++ libtool make \
         curl \
     \
@@ -25,6 +34,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
          https://nmap.org/dist/nmap-${nmap_ver}.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap* \
+ && autoreconf libpcre libdnet-stripped -ivf \
  && ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
@@ -32,8 +42,12 @@ RUN apk add --update --no-cache --virtual .build-deps \
         --infodir=/usr/share/info \
         --without-zenmap \
         --without-nmap-update \
-        --with-openssl=/usr/lib \
-        --with-liblua=/usr/include \
+        --with-liblua=/usr/lua5.4 \
+        --with-libpcap=yes \
+        --with-libpcre=yes \
+        --with-libssh2=yes \
+        --with-libz=yes \
+        --with-openssl=yes \
  && make \
  && make install \
     \
