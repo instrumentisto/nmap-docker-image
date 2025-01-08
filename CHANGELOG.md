@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.95-r6] · 2025-01-08
+[7.95-r6]: /../../tree/7.95-r6
+
+[Diff](/../../compare/7.95-r5...7.95-r6)
+
+### Security updated
+
+- [Alpine Linux] 3.21.1: <https://github.com/docker-library/official-images/commit/34b47f1f4bdef69e39ae335e55b0f07af3b4fa18>
+
+
+
+
 ## [7.95-r5] · 2024-12-06
 [7.95-r5]: /../../tree/7.95-r5
 
