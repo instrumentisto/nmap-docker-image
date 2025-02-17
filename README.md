@@ -2,7 +2,7 @@ Nmap Docker image
 =================
 
 [![Release](https://img.shields.io/github/v/release/instrumentisto/nmap-docker-image "Release")](https://github.com/instrumentisto/nmap-docker-image/releases)
-[![CI](https://github.com/instrumentisto/nmap-docker-image/workflows/CI/badge.svg?branch=main "CI")](https://github.com/instrumentisto/nmap-docker-image/actions?query=workflow%3ACI+branch%3Amain)
+[![CI](https://github.com/instrumentisto/nmap-docker-image/actions/workflows/ci.yml/badge.svg?branch=main "CI")](https://github.com/instrumentisto/nmap-docker-image/actions?query=workflow%3ACI+branch%3Amain)
 [![Docker Hub](https://img.shields.io/docker/pulls/instrumentisto/nmap?label=Docker%20Hub%20pulls "Docker Hub pulls")](https://hub.docker.com/r/instrumentisto/nmap)
 
 [Docker Hub](https://hub.docker.com/r/instrumentisto/nmap)
@@ -16,7 +16,7 @@ Nmap Docker image
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`7.95-r7`, `7.95`, `7`, `latest`][201]
+- [`7.95-r8`, `7.95`, `7`, `latest`][201]
 
 
 
