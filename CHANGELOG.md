@@ -6,6 +6,18 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [7.95-r9] · 2025-06-02
+[7.95-r9]: /../../tree/7.95-r9
+
+[Diff](/../../compare/7.95-r8...7.95-r9)
+
+### Upgraded
+
+- [Alpine Linux] 3.22: <https://www.alpinelinux.org/posts/Alpine-3.22.0-released.html>
+
+
+
+
 ## [7.95-r8] · 2025-02-17
 [7.95-r8]: /../../tree/7.95-r8
 
