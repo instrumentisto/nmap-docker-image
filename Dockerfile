@@ -1,7 +1,7 @@
 # https://hub.docker.com/_/alpine
 FROM alpine:3.23
 
-ARG nmap_ver=7.97
+ARG nmap_ver=7.98
 ARG build_rev=0
 
 
