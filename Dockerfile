@@ -1,11 +1,11 @@
 # https://hub.docker.com/_/alpine
 FROM alpine:3.23
 
-ARG nmap_ver=7.98
+ARG nmap_ver=7.96
 ARG build_rev=0
 
 
-# Install dependencies
+# Install dependencies.
 RUN apk add --update --no-cache \
             ca-certificates \
             libgcc libstdc++ \
@@ -18,7 +18,7 @@ RUN apk add --update --no-cache \
  && rm -rf /var/cache/apk/*
 
 
-# Compile and install Nmap from sources
+# Compile and install Nmap from sources.
 RUN apk add --update --no-cache --virtual .build-deps \
         linux-headers \
         openssl-dev \
@@ -34,7 +34,8 @@ RUN apk add --update --no-cache --virtual .build-deps \
          https://nmap.org/dist/nmap-${nmap_ver}.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap* \
- # Fix 'strlcat' type conflict: https://gitlab.alpinelinux.org/alpine/aports/-/merge_requests/83849
+ # Fix `strlcat` type conflict. See Alpine patch for details:
+ # https://gitlab.alpinelinux.org/alpine/aports/-/merge_requests/83849
  && sed -i '22,25d' libdnet-stripped/acconfig.h \
  && autoreconf libpcre libdnet-stripped -ivf \
  && ./configure \
